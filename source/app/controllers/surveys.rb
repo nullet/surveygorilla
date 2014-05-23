@@ -13,5 +13,12 @@ end
 
 get '/surveys/:id' do
 	@survey = Survey.find(params[:id])
-	erb :"/surveys/#{@survey.id}"
+	erb :"/surveys/take"
 end
+
+get '/surveys/:id/results' do
+	@survey = Survey.find(params[:id])
+	erb :"/surveys/results"
+end
+
+
