@@ -8,6 +8,11 @@ get '/login' do
   erb :login
 end
 
+get '/logout' do
+  session.clear
+  redirect to '/'
+end
+
 get '/users/:id' do
 
 end
