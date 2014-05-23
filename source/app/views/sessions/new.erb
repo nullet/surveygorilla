@@ -1,0 +1,16 @@
+<div class="container">
+  <% if @error %>
+    <p id="errors"><%= @error %></p>
+  <% end %>
+  <form action="/sessions" method="POST">
+    <p>
+      NAME <input name="name">
+    </p>
+    <p>
+      PASSWORD <input type="password" name="password">
+    </p>
+    <p>
+      <input type="submit">
+    </p>
+  </form>
+</div>
