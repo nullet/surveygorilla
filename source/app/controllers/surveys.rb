@@ -1,4 +1,4 @@
-get '/survey/new' do
+get '/surveys/new' do
   if current_user
     erb ":survey/new"
   else
