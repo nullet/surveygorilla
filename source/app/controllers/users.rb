@@ -14,7 +14,6 @@ get '/logout' do
 end
 
 get '/users/:id' do
-
   erb :profile
 end
 

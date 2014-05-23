@@ -1,10 +1,32 @@
 <div class='container'>
-  <!-- surveys completed, surveys created -->
 
-  <!-- if user has surveys completed, display and link them, else print something like "you haven't completed any surveys yet!" -->
+<!--   <% #if @user.surveys.length > 0 %>
+    <table>
+      <tr>
+        <%# @user.surveys.all.each do |survey| %>
+          <td><%=# survey.title %></td>
+          <td><a href='surveys/<%=# survey.id %>/edit'>Edit Survey</a></td>
+          <td><a href='surveys/<%=# survey.id %>/results'>View Results</a></td>
+        <% #end %>
+      </tr>
+    </table>
+  <%# else %>
+    <h3>You haven't created any surveys yet!</h3>
+  <%# end %>
 
-  <!-- do the same for surveys created -->
 
 
+   <%# if @user.completions.length > 0 %>
+    <table>
+      <tr>
+        <%# @user.completions.all.each do |completion| %>
+          <td><%=# completion.title %></td>
+          <td><a href='completions/<%=# completion.id %>/results'>View Results</a></td>
+        <%# end %>
+      </tr>
+    </table>
+  <%# else %>
+    <h3>You haven't completed any surveys yet!</h3>
+  <%# end %> -->
 
 </div>
