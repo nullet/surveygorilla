@@ -9,3 +9,8 @@ Git workflow:
 - $ git push origin <branch name>
 - Create pull request in github for the branch
 - Merge branch into master
+- If creating a branch for every feature:
+- $ git checkout master
+- $ git merge <branch name> #this is the branch that was just pushed to the remote repo
+- $ git branch -d <branch name> #deletes the branch
+- Repeat entire process for a new feature
