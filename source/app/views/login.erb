@@ -1,0 +1,31 @@
+<div class='container'>
+  <% if @errors && !@errors.empty? %>
+    <ul>
+      <% @errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <h2>Login</h2>
+  <form method='post' action='/login'>
+    <input type='text' name='username' placeholder='username'>
+    <br>
+    <input type='password' name='password' placeholder='password'>
+    <br>
+    <input type='submit' value='Login'>
+  </form>
+
+  <hr>
+
+  <h2>Create Account</h2>
+  <form method='post' action='/create'>
+    <input type='text' name='username' placeholder='username'>
+    <br>
+    <input type='password' name='password' placeholder='password'>
+    <br>
+    <input type='password' name='password_confirmation' placeholder='verify'>
+    <br>
+    <input type='submit' value='submit'>
+  </form>
+<div>
