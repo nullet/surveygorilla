@@ -7,11 +7,3 @@
 th {
   text-align: left;
 }
-
-h1, h2 {
-	text-align: center
-}
-
-#errors {
-  color: red;
-}
