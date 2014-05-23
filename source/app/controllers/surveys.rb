@@ -1,4 +1,7 @@
 get '/survey/new' do
-  @user = session[:user_id]
-  erb ":survey/new"
+  if current_user
+    erb ":survey/new"
+  else
+    redirect to "/login"
+  end
 end
