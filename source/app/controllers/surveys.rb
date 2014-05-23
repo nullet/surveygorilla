@@ -5,3 +5,7 @@ get '/survey/new' do
     redirect to "/login"
   end
 end
+
+get '/surveys/:id/edit' do
+	erb :'/surveys/edit'
+end
