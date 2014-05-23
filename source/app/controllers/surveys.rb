@@ -10,3 +10,8 @@ get '/surveys/:id/edit' do
 	@survey = Survey.find(params[:id])
 	erb :'/surveys/edit'
 end
+
+get '/surveys/:id' do
+	@survey = Survey.find(params[:id])
+	erb :"/surveys/#{@survey.id}"
+end
