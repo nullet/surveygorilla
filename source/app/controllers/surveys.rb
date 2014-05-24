@@ -22,8 +22,14 @@ get '/surveys/:id/results' do
 	erb :"/surveys/results"
 end
 
-post '/surveys/complete' do
-  puts "#{params}"
+post '/surveys/:id/complete' do
+  completion = Completion.create(user_id: current_user.id, survey_id: params[:id])
+  puts "#{completion.inspect}"
+  params[:choices].each do |choice_id|
+    answer = Answer.create(choice_id: choice_id, completion_id: completion.id)
+    puts "#{answer.inspect}"
+  end
+  redirect "/surveys/#{params[:id]}/results"
 end
 
 
