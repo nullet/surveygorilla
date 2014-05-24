@@ -19,7 +19,7 @@ end
 
 get '/surveys/:id/results' do
 	@survey = Survey.find(params[:id])
-  @total = 0
+  @total = @survey.get_number_of_answers
 	erb :"/surveys/results"
 end
 

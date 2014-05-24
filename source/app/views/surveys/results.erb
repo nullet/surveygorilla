@@ -5,7 +5,7 @@
     <li><%= question.text %></li> 
     <ul>
       <% question.choices.each do |choice| %>
-            <li><%= choice.text %>: <%= choice.answers.length %></li>
+            <li><%= choice.text %>: <%= to_percent(choice.answers.length, @total) %>%</li>
       <% end %>
     </ul>
   <% end %>
