@@ -13,12 +13,17 @@ end
 
 get '/surveys/:id' do
 	@survey = Survey.find(params[:id])
+	@questions = @survey.questions
 	erb :"/surveys/take"
 end
 
 get '/surveys/:id/results' do
 	@survey = Survey.find(params[:id])
 	erb :"/surveys/results"
+end
+
+post '/surveys/complete' do
+  puts "#{params}"
 end
 
 
