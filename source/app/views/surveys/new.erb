@@ -1,11 +1,15 @@
 <h1>Create a Survey</h1>
 <form action="/surveys/new" method="POST">
   <input type="text" name="survey[title]" placeholder="Title" autofocus>
-  <input type="hidden" name="survey[author_id]" value="<%= @user.id %>">
-  <input type="text" name="question[text]" placeholder="Your Question">
-  <input type="text" name="choice1[text]" placeholder="Choice 1">
-  <input type="text" name="choice2[text]" placeholder="Choice 2">
-  <input type="text" name="choice3[text]" placeholder="Choice 3">
-  <input type="text" name="choice4[text]" placeholder="Choice 4">
+  <br>
+  <br>
+  <input type="text" name="survey[questions][][text]" placeholder="Your Question"><br><br>
+  <input type="text" name="survey[questions][][choices][]" placeholder="Choice 1">
+  <input type="text" name="survey[questions][][choices][]" placeholder="Choice 2">
+  <input type="text" name="survey[questions][][choices][]" placeholder="Choice 3">
+  <input type="text" name="survey[questions][][choices][]" placeholder="Choice 4">
+  <br>
+  <br>
+  <a href="/">Add Question</a>
   <input type="submit" value="Create Survey">
 </form>

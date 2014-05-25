@@ -1,3 +1,5 @@
+require 'byebug'
+
 get '/surveys/new' do
   if current_user
     erb :"surveys/new"
@@ -7,12 +9,22 @@ get '/surveys/new' do
 end
 
 post '/surveys/new' do
-  new_survey = Survey.create(params[:survey])
-  new_survey.questions.create(params[:question])
-  new_survey.questions.last.choices.create(params[:choice1])
-  new_survey.questions.last.choices.create(params[:choice2])
-  new_survey.questions.last.choices.create(params[:choice3])
-  new_survey.questions.last.choices.create(params[:choice4])
+  puts "#{params[:survey][:questions]}"
+  new_survey = Survey.create(title: params[:survey][:title], author_id: current_user.id)
+  puts "#{new_survey.inspect}"
+  params[:survey][:questions].each do |question|
+    new_question = Question.create(text: question["text"])
+    new_survey.questions << new_question
+    question["choices"].each do |choice|
+      new_choice = Choice.create(text: choice)
+      new_question.choices << new_choice
+    end
+  end
+  # new_survey.questions.new(params[:question])
+  # new_survey.questions.last.choices.create(params[:choice1])
+  # new_survey.questions.last.choices.create(params[:choice2])
+  # new_survey.questions.last.choices.create(params[:choice3])
+  # new_survey.questions.last.choices.create(params[:choice4])
   redirect to "/profile"
 end
 
