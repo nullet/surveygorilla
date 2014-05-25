@@ -1,15 +1,12 @@
 <h1>Create a Survey</h1>
-<form action="/surveys/new" method="POST">
+  <form action="/surveys/new" method="POST">
   <input type="text" name="survey[title]" placeholder="Title" autofocus>
-  <br>
-  <br>
-  <input type="text" name="survey[questions][][text]" placeholder="Your Question"><br><br>
-  <input type="text" name="survey[questions][][choices][]" placeholder="Choice 1">
-  <input type="text" name="survey[questions][][choices][]" placeholder="Choice 2">
-  <input type="text" name="survey[questions][][choices][]" placeholder="Choice 3">
-  <input type="text" name="survey[questions][][choices][]" placeholder="Choice 4">
-  <br>
-  <br>
-  <a href="/">Add Question</a>
+
+  <%= erb :'partials/_new_question' %>
+  
+  <a href="/surveys/new" id="add-question">Add Question</a>
   <input type="submit" value="Create Survey">
-</form>
+  </form>
+
+  
+

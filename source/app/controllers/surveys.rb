@@ -2,7 +2,11 @@ require 'byebug'
 
 get '/surveys/new' do
   if current_user
-    erb :"surveys/new"
+    if request.xhr?
+      erb :"partials/_new_question", layout: false
+    else
+      erb :"surveys/new"
+    end
   else
     redirect to "/login"
   end
@@ -20,11 +24,6 @@ post '/surveys/new' do
       new_question.choices << new_choice
     end
   end
-  # new_survey.questions.new(params[:question])
-  # new_survey.questions.last.choices.create(params[:choice1])
-  # new_survey.questions.last.choices.create(params[:choice2])
-  # new_survey.questions.last.choices.create(params[:choice3])
-  # new_survey.questions.last.choices.create(params[:choice4])
   redirect to "/profile"
 end
 
