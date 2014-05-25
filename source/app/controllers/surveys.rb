@@ -19,8 +19,16 @@ end
 
 get '/surveys/:id/results' do
 	@survey = Survey.find(params[:id])
-  @total = @survey.get_number_of_answers
-	erb :"/surveys/results"
+  write_tsv(@survey)
+  erb :'surveys/results_d3'
+ #  @total = @survey.get_number_of_answers
+	# erb :"/surveys/results"
+end
+
+get '/surveys/:id/results.tsv' do
+  @survey = Survey.find(params[:id])
+  write_tsv(@survey)
+  send_file 'public/data/results.tsv' 
 end
 
 post '/surveys/:id/complete' do
