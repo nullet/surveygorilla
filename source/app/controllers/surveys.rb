@@ -19,8 +19,7 @@ end
 
 get '/surveys/:id/results' do
 	@survey = Survey.find(params[:id])
-  write_tsv(@survey)
-  erb :'surveys/results_d3'
+  erb :'surveys/results'
  #  @total = @survey.get_number_of_answers
 	# erb :"/surveys/results"
 end

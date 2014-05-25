@@ -3,10 +3,6 @@
 <ol>
   <% @survey.questions.each do |question| %>
     <li><%= question.text %></li> 
-    <ul>
-      <% question.choices.each do |choice| %>
-            <li><%= choice.text %>: <%= to_percent(choice.answers.length, @total) %>%</li>
-      <% end %>
-    </ul>
-  <% end %>
+    <svg class="chart"></svg>
+    <% end %>
 </ol>
