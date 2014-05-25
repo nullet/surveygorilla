@@ -4,5 +4,6 @@
   <% @survey.questions.each do |question| %>
     <li><%= question.text %></li> 
     <svg class="chart"></svg>
+    <a href="/surveys/<%= @survey.id %>/results.tsv">Download results</a>
     <% end %>
 </ol>
