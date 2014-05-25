@@ -31,7 +31,6 @@ get '/surveys/:id/results' do
 	@survey = Survey.find(params[:id])
   erb :'surveys/results'
  #  @total = @survey.get_number_of_answers
-	# erb :"/surveys/results"
 end
 
 get '/surveys/:id/results.tsv' do
@@ -42,7 +41,7 @@ end
 
 post '/surveys/:id/complete' do
   completion = Completion.create(user_id: current_user.id, survey_id: params[:id])
-  puts "#{completion.inspect}"
+  puts "PARAMS: #{params[:choices]}"
   params[:choices].each do |choice_id|
     answer = Answer.create(choice_id: choice_id, completion_id: completion.id)
     puts "#{answer.inspect}"
