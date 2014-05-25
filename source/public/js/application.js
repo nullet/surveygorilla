@@ -6,8 +6,8 @@ $(document).ready(function(){
 
     $.get(url, function(response) {
       $('#add-question').before(response)
-    })
+    });
 
 
-  })
+  });
 });
