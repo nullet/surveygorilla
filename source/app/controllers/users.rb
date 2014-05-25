@@ -13,7 +13,8 @@ get '/logout' do
   redirect to '/'
 end
 
-get '/users/:id' do
+get '/profile' do
+  current_user
   erb :profile
 end
 
@@ -23,7 +24,7 @@ post '/login' do
   @user = User.find_by_username(params[:username])
   if @user && @user.password == params[:password]
     session[:user_id] = @user.id
-    redirect '/users/:id'
+    redirect '/profile'
   else
     @errors = ["Username or password was incorrect."]
   end
@@ -36,7 +37,7 @@ post '/create' do
     @user = User.new(username: params[:username], password: params[:password], email: params[:email])
     if @user.save
       session[:user_id] = @user.id
-      redirect '/users/:id'
+      redirect '/profile'
     else
       @errors = ["Please make sure you've filled the fields out correctly."]
       erb :login

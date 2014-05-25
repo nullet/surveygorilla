@@ -1,9 +1,19 @@
 get '/surveys/new' do
   if current_user
-    erb ":survey/new"
+    erb :"surveys/new"
   else
     redirect to "/login"
   end
+end
+
+post '/surveys/new' do
+  new_survey = Survey.create(params[:survey])
+  new_survey.questions.create(params[:question])
+  new_survey.questions.last.choices.create(params[:choice1])
+  new_survey.questions.last.choices.create(params[:choice2])
+  new_survey.questions.last.choices.create(params[:choice3])
+  new_survey.questions.last.choices.create(params[:choice4])
+  redirect to "/profile"
 end
 
 get '/surveys/:id/edit' do

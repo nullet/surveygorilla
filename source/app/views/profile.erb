@@ -1,33 +1,48 @@
-<div class='container'>
 
-<!--   <% #if @user.surveys.length > 0 %>
+<h1>Welcome <%= @user.username %></h1>
+<div class="created-surveys">
+  <% if @user.surveys.empty?  || @user.surveys.nil? %>
+    <h2><a href="/surveys/new">Make a Survey</a></h2>
+  <% else %>
+    <h2>You've created these surveys</h2>
     <table>
-      <tr>
-        <%# @user.surveys.all.each do |survey| %>
-          <td><%=# survey.title %></td>
-          <td><a href='surveys/<%=# survey.id %>/edit'>Edit Survey</a></td>
-          <td><a href='surveys/<%=# survey.id %>/results'>View Results</a></td>
-        <% #end %>
-      </tr>
+      <% @user.surveys.each do |survey| %>
+        <tr>
+          <td><a href="/surveys/<%= survey.id %>"><%= survey.title %></a></td>
+          <td><a href="/surveys/<%= survey.id %>/results">results</a></td>
+          <td><a href="/surveys/<%= survey.id %>/edit">Edit</a></td>
+          <td><form action="/surveys/<%= survey.id %>/delete" method="POST"><input type="hidden" name="_method" value="DELETE"><input type="submit" value="Delete"></form></td>
+        </tr>
+      <% end %>
     </table>
-  <%# else %>
-    <h3>You haven't created any surveys yet!</h3>
-  <%# end %>
-
-
-
-   <%# if @user.completions.length > 0 %>
-    <table>
-      <tr>
-        <%# @user.completions.all.each do |completion| %>
-          <td><%=# completion.title %></td>
-          <td><a href='completions/<%=# completion.id %>/results'>View Results</a></td>
-        <%# end %>
-      </tr>
-    </table>
-  <%# else %>
-    <h3>You haven't completed any surveys yet!</h3>
-  <%# end %> -->
-
+      <a href="/surveys/new">Make a new Survey</a>
+  <% end %>
 </div>
+<hr>
+<div class="complete-surveys">
+  <% if @user.completions.empty? || @user.completions.first.nil? %>
+    <h2>See Surveys Taken Here.</h2>
+  <% else %>
+    <h2>You've Completed these Surveys</h2>
+    <table>
+      <% @user.completions.each do |completion| %>
+        <tr>
+          <td><%= completion.survey.title %></td>
+          <td><a href="/surveys/<%= completion.survey_id %>/results">results</a></td>
+        </tr>
+      <% end %>
+    </tabl>
+  <% end %>
+<hr>
+<div class="all-surveys">
+  <h2>Take a Survey</h2>
+  <table>
+    <% Survey.all.each do |survey| %>
+      <tr>
+        <td><a href="/surveys/<%= survey.id %>"><%= survey.title %></a></td>
+      </tr>
+    <% end %>
+  </tabl>
+</div>
+
 
