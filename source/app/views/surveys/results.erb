@@ -2,10 +2,9 @@
 <h3><%= @survey.title %></h3>
 
 <ol>
-  <% @survey.questions.each do |question| %>
-    <span id="question-id" type='hidden'><%= question.id %></span>
+  <% @survey.questions.each_with_index do |question, index| %>
+    <span class="question-id" type='hidden'><%= question.id %></span>
     <li><%= question.text %></li> 
     <svg class="chart"></svg>
-    
     <% end %>
 </ol>
