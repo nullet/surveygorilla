@@ -1,9 +1,12 @@
+<script src="/js/charts.js"></script>
 <h3><%= @survey.title %></h3>
 
 <ol>
-  <% @survey.questions.each do |question| %>
+  <% @survey.questions.each_with_index do |question, index| %>
+    <span class="question-id" ><%= question.id %></span>
     <li><%= question.text %></li> 
-    <svg class="chart"></svg>
-    <a href="/surveys/<%= @survey.id %>/results.tsv">Download results</a>
+    <svg id="chart<%=question.id%>"></svg>
+    <a href="/surveys/<%= @survey.id %>/<%= question.id %>/results.tsv">Download</a>
+    <br>
     <% end %>
 </ol>

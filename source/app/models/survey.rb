@@ -1,6 +1,8 @@
 class Survey < ActiveRecord::Base
   belongs_to :author, class_name: "User", foreign_key: :author_id
-  has_many :questions
+  has_many :questions, dependent: :destroy
+  has_many :completions, dependent: :destroy
+
 
   def get_number_of_answers
     total = 0
