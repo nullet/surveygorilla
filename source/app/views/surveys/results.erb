@@ -3,8 +3,9 @@
 
 <ol>
   <% @survey.questions.each do |question| %>
+    <span id="question-id" type='hidden'><%= question.id %></span>
     <li><%= question.text %></li> 
     <svg class="chart"></svg>
-    <a href="/surveys/<%= @survey.id %>/results.tsv">Download results</a>
+    
     <% end %>
 </ol>

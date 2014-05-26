@@ -2,14 +2,14 @@
 
 <ol>
 	<% @questions.each do |question| %>
-		<li><%= question.text %></li>
-			<form method="POST" action="/surveys/<%= @survey.id %>/complete">
-				<% question.choices.each do |choice| %>
-					<input type="radio" name="choices[]" value=<%= choice.id %>><%= choice.text %><br>
-				<% end %>
-			</form>
-      <br>
-	<% end %>
-  <input type="submit" value="Submit">
+		<form method="POST" action="/surveys/<%= @survey.id %>/complete">
+			<li><%= question.text %></li>
+					<% question.choices.each do |choice| %>
+						<input type="radio" name="choices[<%= question.id %>]" value=<%= choice.id %>><%= choice.text %><br>
+					<% end %>
+	      <br>
+		<% end %>
+  		<input type="submit" value="Submit">
+  		</form>
 </ol>
 

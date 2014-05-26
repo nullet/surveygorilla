@@ -44,16 +44,16 @@ get '/surveys/:id/results' do
  #  @total = @survey.get_number_of_answers
 end
 
-get '/surveys/:id/results.tsv' do
-  @survey = Survey.find(params[:id])
-  write_tsv(@survey)
+get '/surveys/:survey_id/:question_id/results.tsv' do
+  @question = Survey.find(params[:survey_id]).questions.find(params[:question_id])
+  write_tsv(@question)
   send_file 'public/data/results.tsv' 
 end
 
 post '/surveys/:id/complete' do
   completion = Completion.create(user_id: current_user.id, survey_id: params[:id])
   puts "PARAMS: #{params[:choices]}"
-  params[:choices].each do |choice_id|
+  params[:choices].each_value do |choice_id|
     answer = Answer.create(choice_id: choice_id, completion_id: completion.id)
     puts "#{answer.inspect}"
   end
