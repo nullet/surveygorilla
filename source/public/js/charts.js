@@ -1,7 +1,7 @@
 $(document).ready(function() {
   var questions = $('.question-id').map(function() { return $(this).text(); }).get();
     
-    var margin = {top: 20, right: 30, bottom: 30, left: 30},
+    var margin = {top: 20, right: 30, bottom: 30, left: 40},
       width = 600 - margin.left - margin.right,
       height = 500 - margin.top - margin.bottom;
 
@@ -21,18 +21,19 @@ $(document).ready(function() {
 
     var index = 0
 
-    var chart = d3.selectAll(".chart").each(function(){
-        $(this).attr("width", width + margin.left + margin.right)
+    $.each(questions, function(index, value){
+
+    var chart = d3.select("#chart" + value)
+        .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    console.log(questions)
-    var question = parseInt(questions[index]);
-    console.log("Question:" + question);
 
-    function generate(question) {
-    d3.tsv(question + "/results.tsv", type, function(error, data) {
+      console.log(chart)
+    
+
+    d3.tsv(value + "/results.tsv", type, function(error, data) {
       x.domain(data.map(function(d) { return d.name; }));
       y.domain([0, d3.max(data, function(d) { return d.value; })]);
 
@@ -55,16 +56,13 @@ $(document).ready(function() {
           .attr("width", x.rangeBand());
     });
 
-    
-
     function type(d) {
       d.value = +d.value; // coerce to number
       return d;
   }
-}
-   
-  generate(question)
-  index++;
-  console.log(index);
+   });
 });
-})
+
+  // index++;
+  // console.log(index);
+// });

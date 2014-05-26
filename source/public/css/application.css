@@ -30,3 +30,7 @@ th {
 .x.axis path {
   display: none;
 }
+
+.question-id {
+  visibility: hidden;
+}
